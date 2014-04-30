@@ -1,10 +1,9 @@
-package AudioVisualizer;
-
 /*Name: Juan Amaral
  *Date: April 9, 2014
  *Title: Project UI
  *Abstract: This section will prompt the user to choose a file whith which to work with
  */
+package cst205FinalProject;
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
@@ -20,9 +19,12 @@ import javax.swing.JFileChooser;
 
 import java.io.File;
 
+import javax.sound.*;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
+
+
 
 public class AudioVisualizer extends JFrame implements ActionListener
 {
@@ -31,7 +33,7 @@ public class AudioVisualizer extends JFrame implements ActionListener
     private JLabel label1;
     private JLabel output;
     private File audioFile;
-    private static AudioFormat inputFile;
+    private static AudioFormat getAudioFileFormat;
     private int totalFramesRead;
     
     public AudioVisualizer( )
@@ -78,8 +80,8 @@ public class AudioVisualizer extends JFrame implements ActionListener
         	 final JFileChooser fc = new JFileChooser();
         	 int returnVal = fc.showOpenDialog(this);
         	 if (returnVal == JFileChooser.APPROVE_OPTION) {
-                 audioFile = fc.getSelectedFile();                     //file is chosen based on the file dialog
-                 System.out.println("File has been inputed");          //for testing purposes only
+                 audioFile = fc.getSelectedFile(); //file is chosen based on the file dialog
+                 System.out.println("File has been inputed"); //for testing purposes only
         	 }
         	 
         	 audioReader(audioFile);
@@ -109,7 +111,9 @@ public class AudioVisualizer extends JFrame implements ActionListener
     		        // Calculate the number of frames actually read.
     		        numFramesRead = numBytesRead / bytesPerFrame;
     		        totalFramesRead += numFramesRead;
-                        
+    		       
+    		        
+    		        
     		        System.out.println("number of bytes:"+ numBytes);
     		        System.out.println("total number of frames read: " + totalFramesRead);
     		      }
@@ -120,11 +124,5 @@ public class AudioVisualizer extends JFrame implements ActionListener
     		     System.out.println("Error 2");    // error handling
     		  }
     	}
-    
-        public String getAudioFile()
-        {
-            return audioFile.getPath();
-        }
     }
-
 
