@@ -34,6 +34,8 @@ public class AudioVisualizer extends JFrame implements ActionListener
     private static AudioFormat inputFile;
     private int totalFramesRead;
     
+    MinimTest testDraw = new MinimTest();
+    
     public AudioVisualizer( )
     {
         super( );
@@ -82,7 +84,8 @@ public class AudioVisualizer extends JFrame implements ActionListener
                  System.out.println("File has been inputed");          //for testing purposes only
         	 }
         	 
-        	 audioReader(audioFile);
+        	 //audioReader(audioFile);
+                 testDraw();
         }
     }
     
@@ -90,7 +93,7 @@ public class AudioVisualizer extends JFrame implements ActionListener
     {
     	try{
     		  AudioInputStream audioInputStream = 
-    		    AudioSystem.getAudioInputStream(file);
+    		  AudioSystem.getAudioInputStream(file);
     		  int bytesPerFrame = audioInputStream.getFormat().getFrameSize();
     		    if (bytesPerFrame == AudioSystem.NOT_SPECIFIED) {
     		    // some audio formats may have unspecified frame size
@@ -125,5 +128,19 @@ public class AudioVisualizer extends JFrame implements ActionListener
         {
             return audioFile.getPath();
         }
+        
+        public void testDraw()
+        {
+            if(audioFile.isFile())
+            {
+                try{
+                
+                    testDraw.draw();
+                }
+                catch(Exception e)
+                {
+                    e.getMessage();
+                }
+            }
+        }
     }
-
